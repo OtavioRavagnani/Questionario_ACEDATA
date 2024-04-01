@@ -13,7 +13,7 @@ function calcularSalario() {
     return;
   }
 
-  if (filhosMenores14 <= 0) {
+  if (filhosMenores14 < 0) {
     alert("Erro: Número de filhos menores de 14 anos não pode ser negativo.");
     return;
   }
