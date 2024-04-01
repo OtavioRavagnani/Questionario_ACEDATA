@@ -1,24 +1,37 @@
-function fibonacci(n) {
-  // Caso base
-  if (n === 0 || n === 1) {
-    return 1;
+const numeroInput = document.getElementById("numero");
+const gerarBtn = document.getElementById("gerar");
+const resultadoDiv = document.getElementById("resultado");
+
+gerarBtn.addEventListener("click", function () {
+  const n = numeroInput.value;
+
+  // Validação de pontos e vírgulas
+  if (n.includes(".") || n.includes(",")) {
+    alert("Erro: O número não pode conter pontos ou vírgulas.");
+    return;
   }
 
-  // Soma dos dois números anteriores
-  return fibonacci(n - 1) + fibonacci(n - 2);
-}
+  // Validação de campo vazio
+  if (n == 0) {
+    alert("Erro: Preencha o campo corretamente !");
+    return;
+  }
 
-function main() {
-  // Leitura do valor N
-  const n = parseInt(prompt("Digite um número N: "));
+  // Cálculo da sequência de Fibonacci
+  const fibonacci = (n) => {
+    if (n === 0 || n === 1) {
+      return 1;
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  };
 
-  // Impressão dos N primeiros números da sequência
-  console.log("Os " + n + " primeiros números da sequência de Fibonacci são:");
+  // Exibir os N primeiros números da sequência
+  let resultado = "Os " + n + " primeiros números da sequência de Fibonacci são:<br>";
   for (let i = 0; i < n; i++) {
-    console.log(fibonacci(i));
+    resultado += fibonacci(i) + "<br>";
   }
 
-  // Verificação se N faz parte da sequência
+  // Verificar se N faz parte da sequência
   let encontrado = false;
   for (let i = 0; i < n; i++) {
     if (fibonacci(i) === n) {
@@ -27,12 +40,13 @@ function main() {
     }
   }
 
-  // Exibição da mensagem final
+  // Exibir a mensagem final
+  resultado += "<br>";
   if (encontrado) {
-    console.log("O número " + n + " faz parte da sequência de Fibonacci.");
+    resultado += "O número " + n + " faz parte da sequência de Fibonacci.";
   } else {
-    console.log("O número " + n + " não faz parte da sequência de Fibonacci.");
+    resultado += "O número " + n + " não faz parte da sequência de Fibonacci.";
   }
-}
 
-main();
+  resultadoDiv.innerHTML = resultado;
+});

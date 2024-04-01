@@ -1,0 +1,29 @@
+body {
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+h1 {
+  color: #2980b9;
+}
+
+button {
+  background-color: #2980b9;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+div {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
