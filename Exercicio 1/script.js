@@ -35,3 +35,12 @@ function calcularSalario() {
   document.getElementById("salarioFamilia").innerHTML = `Salario Familia: R$ ${salarioFamilia.toFixed(2)}`;
   document.getElementById("salarioLiquido").innerHTML = `Salario Liquido: R$ ${salarioLiquido.toFixed(2)}`;
 }
+
+function limpar() {
+  document.getElementById("salarioHora").value = 0;
+  document.getElementById("horasTrabalhadas").value = 0;
+  document.getElementById("filhosMenores14").value = 0;
+  document.getElementById("salarioBruto").innerHTML = "";
+  document.getElementById("salarioFamilia").innerHTML = "";
+  document.getElementById("salarioLiquido").innerHTML = "";
+}
