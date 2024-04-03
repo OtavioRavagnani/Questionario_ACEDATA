@@ -1,10 +1,43 @@
-function calcularC() {
+function calcularC(a, b) {
+    if (a <= 0) {
+        alert("Error: Valor de A deve ser positivo.");
+        return;
+    }
+    else if (b <= 0) {
+        alert("Error: Valor de B deve ser positivo.");
+        return;
+    }
+    else {
+        const fatorACE = (a * b) / 2;
+        const c = 2 * (3 * (a + b)) / fatorACE;
+        return c;
+    }
+}
+
+function handleCalculation() {
     const valorA = parseFloat(document.getElementById("valorA").value);
     const valorB = parseFloat(document.getElementById("valorB").value);
 
-    const fatorACE = 2 / (valorA * valorB)
-    const c = fatorACE / 2 * 3 * (valorA + valorB)
+    const resultadoDiv = document.getElementById("resultado");
 
-    const resultadoElement = document.getElementById("resultado");
-    resultadoElement.innerHTML = `O valor de C é: ${c.toFixed(1)}`;
+    const result = calcularC(valorA, valorB);
+
+    if (typeof result === "string") {
+        resultadoDiv.textContent = result;
+    } else {
+        resultadoDiv.textContent = `O valor de C é: ${result}`;
+    }
 }
+
+// Event listener for the button click
+const calculateButton = document.querySelector("button[onclick='calcularC()']");
+calculateButton.addEventListener("click", handleCalculation);
+
+function limparCampos() {
+    document.getElementById("valorA").value = "";
+    document.getElementById("valorB").value = "";
+    document.getElementById("resultado").textContent = "";
+}
+
+const clearButton = document.querySelector("button[onclick='limparCampos()']");
+clearButton.addEventListener("click", limparCampos);

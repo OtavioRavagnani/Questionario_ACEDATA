@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercicio 4</title>
+    <title>Exercício 2</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <script src="script.js"></script>
-    <h1>Calculo</h1>
+
     <form>
-        <label for="valorA"> Valor de A:</label>
-        <input type="number" id="valorA" name="valorA">
-        <br>
-        <label for="valorB">Valor de B:</label>
-        <input type="number" id="valorB" name="valorB">
-        <br>
+        <h1>Calcule o valor de C</h1>
+        <p>Digite o valor de A:</p>
+        <input type="number" id="valorA" min="1" required>
+        <p>Digite o valor de B:</p>
+        <input type="number" id="valorB" required>
         <button type="button" onclick="calcularC()">Calcular</button>
+        <button type="button" onclick="limparCampos()">Limpar</button>
+        <div id="resultado"></div>
     </form>
-    <br>
-    <div id="resultado"></div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
