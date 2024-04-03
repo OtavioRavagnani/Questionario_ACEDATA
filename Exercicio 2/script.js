@@ -31,6 +31,7 @@ function encontrar() {
     // Declara variáveis para armazenar o menor e o maior número
     let menor = numeros[0];
     let maior = numeros[0];
+    let segundoMaior = numeros[0];
 
     // Percorre o array de números
     for (let i = 1; i < quantidade; i++) {
@@ -42,7 +43,13 @@ function encontrar() {
 
         // Se o número atual for maior que o maior número armazenado, atualiza o maior número
         else if (numeros[i] > maior) {
+            segundoMaior = maior;
             maior = numeros[i];
+        }
+
+        // Se o número atual for maior que o segundo maior número, mas menor que o maior número, atualiza o segundo maior número
+        else if (numeros[i] > segundoMaior) {
+            segundoMaior = numeros[i];
         }
     }
 
@@ -55,6 +62,7 @@ function encontrar() {
     // Adiciona o menor e o maior número à string
     resultado += "<br>Menor número: " + menor;
     resultado += "<br>Maior número: " + maior;
+    resultado += "<br>Segundo maior número: " + segundoMaior;
 
     // Exibe a string com os resultados na página
     document.getElementById("resultado").innerHTML = resultado;
