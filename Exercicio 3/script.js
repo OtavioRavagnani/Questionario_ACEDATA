@@ -1,52 +1,39 @@
-const numeroInput = document.getElementById("numero");
-const gerarBtn = document.getElementById("gerar");
-const resultadoDiv = document.getElementById("resultado");
+function fibonacciModificado(n) {
+  if (n <= 0) return [];
+  const sequencia = [1, 1];
+  for (let i = 2; i < n; i++) {
+    const ultimo = sequencia[sequencia.length - 1];
+    const penultimo = sequencia[sequencia.length - 2];
+    const soma = ultimo % 2 === 0 ? ultimo + penultimo + sequencia[sequencia.length - 3] : ultimo + penultimo;
+    sequencia.push(soma);
+  }
+  return sequencia;
+}
 
-gerarBtn.addEventListener("click", function () {
-  const n = numeroInput.value;
+function gerarSequencia() {
+  const n = document.getElementById("numero").value;
+  const numeroValido = !isNaN(n) && n > 0 && !n.includes(".") && !n.includes(",");
 
-  // Validação de pontos e vírgulas
-  if (n.includes(".") || n.includes(",")) {
-    alert("Erro: O número não pode conter pontos ou vírgulas.");
+  if (!numeroValido) {
+    alert("O valor digitado é inválido. Digite um número inteiro positivo.");
     return;
   }
 
-  // Validação de campo vazio
-  if (n == 0) {
-    alert("Erro: Preencha o campo corretamente !");
-    return;
+  const sequencia = fibonacciModificado(n);
+  document.getElementById("resultado").innerHTML = "";
+
+  for (let i = 0; i < sequencia.length; i++) {
+    const elemento = document.createElement("span");
+    elemento.classList.add("numero");
+    elemento.textContent = sequencia[i];
+    document.getElementById("resultado").appendChild(elemento);
   }
 
-  // Cálculo da sequência de Fibonacci
-  const fibonacci = (n) => {
-    if (n === 0 || n === 1) {
-      return 1;
-    }
-    return fibonacci(n - 1) + fibonacci(n - 2);
-  };
+  const numeroN = document.getElementById("numero").value;
+  const estaNaSequencia = sequencia.includes(parseInt(numeroN));
+  const mensagem = document.createElement("p");
+  mensagem.textContent = estaNaSequencia ? `O número ${numeroN} está na sequência.` : `O número ${numeroN} não está na sequência.`;
+  document.getElementById("resultado").appendChild(mensagem);
+}
 
-  // Exibir os N primeiros números da sequência
-  let resultado = "Os " + n + " primeiros números da sequência de Fibonacci são:<br>";
-  for (let i = 0; i < n; i++) {
-    resultado += fibonacci(i) + "<br>";
-  }
-
-  // Verificar se N faz parte da sequência
-  let encontrado = false;
-  for (let i = 0; i < n; i++) {
-    if (fibonacci(i) === n) {
-      encontrado = true;
-      break;
-    }
-  }
-
-  // Exibir a mensagem final
-  resultado += "<br>";
-  if (encontrado) {
-    resultado += "O número " + n + " faz parte da sequência de Fibonacci.";
-  } else {
-    resultado += "O número " + n + " não faz parte da sequência de Fibonacci.";
-  }
-
-  resultadoDiv.innerHTML = resultado;
-});
+document.getElementById("gerar").addEventListener("click", gerarSequencia);
