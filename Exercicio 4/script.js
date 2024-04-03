@@ -24,6 +24,8 @@ function handleCalculation() {
 
     if (typeof result === "string") {
         resultadoDiv.textContent = result;
+    } else if (result == undefined) {
+        resultadoDiv.textContent = "";
     } else {
         resultadoDiv.textContent = `O valor de C é: ${result}`;
     }
