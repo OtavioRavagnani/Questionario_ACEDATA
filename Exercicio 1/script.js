@@ -1,7 +1,7 @@
 function calcularSalario() {
   const salarioHora = parseFloat(document.getElementById("salarioHora").value);
   const horasTrabalhadas = parseFloat(document.getElementById("horasTrabalhadas").value);
-  const filhosMenores14 = parseInt(document.getElementById("filhosMenores14").value);
+  const filhosMenores14 = parseFloat(document.getElementById("filhosMenores14").value);
 
   if (salarioHora <= 0) {
     alert("Erro: Salário hora não pode ser zero ou negativo.");
@@ -17,6 +17,19 @@ function calcularSalario() {
     alert("Erro: Número de filhos menores de 14 anos não pode ser negativo.");
     return;
   }
+
+  if (validar(document.getElementById("filhosMenores14").value)) {
+    alert("Erro: Não ultilize numeros com pontos ou virgulas")
+    return;
+  }
+
+  function validar(valor) {
+
+    // Expressão regular que encontra pontos e vírgulas
+    const regex = /[.,]/g;
+    return regex.test(valor);
+  }
+
 
   const salarioBruto = salarioHora * horasTrabalhadas;
 
